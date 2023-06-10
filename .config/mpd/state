@@ -1,0 +1,28 @@
+sw_volume: 100
+audio_device_state:1:pulse audio
+state: stop
+current: 0
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 5
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:RetroElektro-2012-Буйство-Красок/01 - Здравствуйте, уважаемая публика!.mp3
+1:RetroElektro-2012-Буйство-Красок/02 - Балаганчик.mp3
+2:RetroElektro-2012-Буйство-Красок/03 - На снаряде.mp3
+3:RetroElektro-2012-Буйство-Красок/04 - Ещё красивей.mp3
+4:RetroElektro-2012-Буйство-Красок/05 - Будет утро.mp3
+5:RetroElektro-2012-Буйство-Красок/06 - Рай в луже.mp3
+6:RetroElektro-2012-Буйство-Красок/07 - Антракт первый.mp3
+7:RetroElektro-2012-Буйство-Красок/08 - Дыхание.mp3
+8:RetroElektro-2012-Буйство-Красок/10 - Манекены, турникеты.mp3
+9:RetroElektro-2012-Буйство-Красок/11 - Мел.mp3
+10:RetroElektro-2012-Буйство-Красок/12 - Антракт второй.mp3
+11:RetroElektro-2012-Буйство-Красок/13 - Я буду играть.mp3
+12:RetroElektro-2012-Буйство-Красок/14 - Печальный Адам.mp3
+13:RetroElektro-2012-Буйство-Красок/15 - Весна (W.B.).mp3
+14:RetroElektro-2012-Буйство-Красок/09 - Можно, я....mp3
+playlist_end
