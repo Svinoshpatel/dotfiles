@@ -8,18 +8,21 @@ set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
 
-# Custom Functions
+# Create directory
 cmd mkdir ${{
   printf "Directory Name: "
   read ans
   mkdir $ans
 }}
+map md mkdir
 
+# Create file
 cmd mkfile ${{
   printf "File Name: "
   read ans
   $(touch $ans)
 }}
+map mf mkfile
 
 # Archive bindings
 cmd unarchive ${{
@@ -31,8 +34,9 @@ cmd unarchive ${{
       *) echo "Unsupported format" ;;
   esac
 }}
+map au unarchive
 
-# Trash bindings
+# Trash
 cmd trash ${{
   files=$(printf "$fx" | tr '\n' ';')
   while [ "$files" ]; do
@@ -46,37 +50,34 @@ cmd trash ${{
     fi
   done
 }}
+map dd trash
 
+# Trash restore
 cmd restore_trash ${{
   trash-restore
 }}
+map dr restore_trash
 
-# Draagon
+# Dragon
 cmd dragon %dragon -a -x $fx
+map dg dragon
 
 # Change wallpaper
 cmd wallpaper ${{
-  CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
-  echo "preload = $f" > $CONFIG_FILE
-  echo "wallpaper = eDP-1, $f" >> $CONFIG_FILE
-  killall hyprpaper 1> /dev/null
-  hyprpaper 1> /dev/null &
+  feh --bg-fill $f
 }}
+map Ws wallpaper
 
 # Image Go Nord catppuccin palette
 cmd imagegocatppuccin ${{
   RESULT=$(basename $f | tr -d ".jpg|.png")
   python ~/bin/ImageGoNord/src/cli.py --catppuccin -i=$f -o=${RESULT}-catppuccin
 }}
-
 map Wc imagegocatppuccin
 
 # Remove bindings
 map d
 map m
-
-# Archive
-map au unarchive
 
 # Use enter for shell commands
 map <enter> shell
@@ -91,12 +92,8 @@ map X !$f
 map o $mimeopen $f &
 map O $mimeopen --ask $f &
 
-# Basic Functions
-map mf mkfile
-map md mkdir
+# Cut
 map x cut
-map dd trash
-map dr restore_trash
 
 # Movement
 map gD cd ~/Documents
@@ -106,9 +103,3 @@ map gc cd ~/.config
 map gv cd ~/Videos
 map gt cd ~/.local/share/Trash/files
 map gG cd ~/Git
-
-# Dragon keybindings
-map dg dragon
-
-# Wallpaper keybindings
-map Ws wallpaper
