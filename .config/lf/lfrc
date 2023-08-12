@@ -53,6 +53,24 @@ cmd restore_trash ${{
 
 # Draagon
 cmd dragon %dragon -a -x $fx
+
+# Change wallpaper
+cmd wallpaper ${{
+  CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+  echo "preload = $f" > $CONFIG_FILE
+  echo "wallpaper = eDP-1, $f" >> $CONFIG_FILE
+  killall hyprpaper 1> /dev/null
+  hyprpaper 1> /dev/null &
+}}
+
+# Image Go Nord catppuccin palette
+cmd imagegocatppuccin ${{
+  RESULT=$(basename $f | tr -d ".jpg|.png")
+  python ~/bin/ImageGoNord/src/cli.py --catppuccin -i=$f -o=${RESULT}-catppuccin
+}}
+
+map Wc imagegocatppuccin
+
 # Remove bindings
 map d
 map m
@@ -71,7 +89,7 @@ map X !$f
 
 # dedicated keys for file opener actions
 map o $mimeopen $f &
-map O $mimeopen --ask $f
+map O $mimeopen --ask $f &
 
 # Basic Functions
 map mf mkfile
@@ -91,3 +109,6 @@ map gG cd ~/Git
 
 # Dragon keybindings
 map dg dragon
+
+# Wallpaper keybindings
+map Ws wallpaper

@@ -178,7 +178,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    local names = { "", "󰈹", "", "󰓓", "", "󰃣", "", "", "" }
+    local names = { "1", "2", "3", "4", "5", "6", "7" }
     tags = names
     local l = awful.layout.suit  -- Just to save some typing: use an alias.
     local layouts = { l.tile, l.tile, l.tile, l.floating, l.tile,
@@ -213,8 +213,8 @@ awful.screen.connect_for_each_screen(function(s)
                     widget = wibox.widget.textbox,
                     id = 'text_role',
                     align = 'center',
-                    font = 'JetBrainsMonoNerdFont',
-                    forced_width = 30,
+                    font = 'JetBrainsMonoNerdFont 11',
+                    forced_width = 22,
                 },
                 widget = wibox.container.margin,
                 margins = 4,
@@ -275,19 +275,6 @@ local update_volume_timer = gears.timer {
         myvolume.update_volume_widget(myvolume.volume_widget)
     end
 }
-
--- Garbage collector notification
-local function print_awesome_memory_stats(message)
-    print(os.date(), "\nLua memory usage:", collectgarbage("count"))
-    local out_string = tostring(os.date()) .. "\nLua memory usage:"..tostring(collectgarbage("count")).."\n"
-    out_string = out_string .. "Objects alive:"
-    print("Objects alive:")
-    for name, obj in pairs{ button = button, client = client, drawable = drawable, drawin = drawin, key = key, screen = screen, tag = tag } do
-        out_string =out_string .. "\n" .. tostring(name) .. " = " ..tostring(obj.instances())
-        print(name, obj.instances())
-    end
-    naughty.notify({title = "Awesome WM memory statistics " .. message, text = out_string, timeout=20,hover_timeout=20})
-end
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
@@ -418,18 +405,7 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessDown", function()
         awful.spawn("light -U 5")
         mybrightness.update_brightness_widget(mybrightness.brightness_widget) end,
-    {description = "Brightness down", group = "system"}),
-
-    -- Garbage collector
-    awful.key({modkey,"Control" }, "s", function()
-    print_awesome_memory_stats("Precollect")
-    collectgarbage("collect")
-    collectgarbage("collect")
-    gears.timer.start_new(20, function()
-        print_awesome_memory_stats("Postcollect")
-        return false
-    end)
-    end, {description = "print awesome wm memory statistics", group="awesome"})
+    {description = "Brightness down", group = "system"})
 )
 
 clientkeys = gears.table.join(
@@ -556,8 +532,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     --placement = awful.placement.no_overlap+awful.placement.no_offscreen
-                    placement = awful.placement.centered
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
 
@@ -578,9 +553,7 @@ awful.rules.rules = {
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
-          "xtightvncviewer",
-          "feh"
-        },
+          "xtightvncviewer"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
@@ -677,4 +650,3 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-

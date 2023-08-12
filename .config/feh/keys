@@ -1,0 +1,8 @@
+l [next_img] 
+prev_img [h]
+#zoom_in [j]
+#zoom_out [k]
+toggle_pause
+toggle_keep_vp
+save_filelist
+reload_image [M]

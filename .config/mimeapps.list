@@ -1,0 +1,12 @@
+[Default Applications]
+application/x-shellscript=nvim.desktop;
+text/plain=nvim.desktop;
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+image/gif=mpv-usercreated-1.desktop;
+image/png=feh.desktop;
+image/jpeg=feh.desktop;
+x-scheme-handler/viber=viber.desktop
+text/x-lua=nvim.desktop;
+application/toml=nvim.desktop;
+text/x-scss=nvim.desktop;
+application/vnd.adobe.flash.movie=firefox-usercreated-1.desktop;
